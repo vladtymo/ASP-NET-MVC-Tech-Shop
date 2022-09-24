@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC_Tech_Shop.Data;
 using MVC_Tech_Shop.Models;
 using System.Diagnostics;
 
