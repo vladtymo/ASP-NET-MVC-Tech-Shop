@@ -1,4 +1,6 @@
-﻿namespace MVC_Tech_Shop.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MVC_Tech_Shop.Models
 {
     public class Laptop
     {
