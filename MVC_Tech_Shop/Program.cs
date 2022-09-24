@@ -3,7 +3,7 @@ using MVC_Tech_Shop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connectionStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechShopDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+string connectionStr = builder.Configuration.GetConnectionString("LocalDb");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
