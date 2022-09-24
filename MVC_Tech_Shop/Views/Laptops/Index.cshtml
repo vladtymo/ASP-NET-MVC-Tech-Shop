@@ -1,0 +1,39 @@
+﻿@model List<MVC_Tech_Shop.Models.Laptop>;
+
+<h1>All Laptops</h1>
+<p>@Model.Count Products found</p>
+
+@*<ul>
+    @foreach (var laptop in Model)
+    {
+        <li>@laptop.Model - @laptop.Price$</li>
+    }
+</ul>*@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Model</th>
+            <th scope="col">Display</th>
+            <th scope="col">Processor</th>
+            <th scope="col">Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var laptop in Model)
+        {
+            <tr class="align-middle">
+                <th scope="row">@laptop.Id</th>
+                <td>@laptop.Model</td>
+                <td>@laptop.Display</td>
+                <td>@laptop.Processor</td>
+                <td>@laptop.Price$</td>
+                <td>
+                    <a asp-controller="Laptops" asp-action="Details" asp-route-id="@laptop.Id" class="btn btn-primary">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

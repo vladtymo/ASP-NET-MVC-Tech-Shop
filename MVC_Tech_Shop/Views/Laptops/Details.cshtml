@@ -1,0 +1,20 @@
+﻿@model MVC_Tech_Shop.Models.Laptop;
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-dark">Back</a>
+    <h1 class="d-inline-block align-middle">Laptop Details</h1>
+</div>
+<hr />
+
+<section class="text-center">
+    <h2 class="mb-4">@Model.Model</h2>
+
+    <h3>Display</h3>
+    <p>@Model.Display</p>
+
+    <h3>Processor</h3>
+    <p>@Model.Processor</p>
+
+    <h3>Price</h3>
+    <p>@Model.Price$</p>
+</section>
