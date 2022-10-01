@@ -1,4 +1,23 @@
-﻿<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿@model List<MVC_Tech_Shop.Models.Laptop>;
+
+<div class="text-center">
+    <h1 class="display-4">Popular Products</h1>
+    <hr />
+    <p>PC Laptops & Netbooks</p>
+
+    <div class="row row-cols-4 g-3 align-items-stretch">
+        @foreach(var i in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <img src="https://st.depositphotos.com/1001069/1998/i/950/depositphotos_19988345-stock-photo-laptop-with-blank-screen.jpg" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@i.Model</h5>
+                        <p>Price: @i.Price$</p>
+                        <a asp-controller="Laptops" asp-action="Details" asp-route-id="@i.Id" class="btn btn-secondary">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

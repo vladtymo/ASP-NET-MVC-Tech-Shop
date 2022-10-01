@@ -47,6 +47,8 @@ namespace MVC_Tech_Shop.Controllers
             context.Laptops.Add(laptop);
             context.SaveChanges();
 
+            TempData["isCreated"] = "true";
+
             return RedirectToAction(nameof(Index));
         }
     }

@@ -7,16 +7,18 @@ namespace MVC_Tech_Shop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly TechShopDbContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(TechShopDbContext context)
         {
-            _logger = logger;
+            this.context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var laptops = context.Laptops.ToList();
+
+            return View(laptops);
         }
 
         public IActionResult Privacy()
