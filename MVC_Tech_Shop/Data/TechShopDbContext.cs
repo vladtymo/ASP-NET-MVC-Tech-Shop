@@ -5,7 +5,7 @@ namespace MVC_Tech_Shop.Data
 {
     public class TechShopDbContext : DbContext
     {
-        public TechShopDbContext() { }
+        //public TechShopDbContext() { }
         public TechShopDbContext(DbContextOptions options) : base(options) { }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

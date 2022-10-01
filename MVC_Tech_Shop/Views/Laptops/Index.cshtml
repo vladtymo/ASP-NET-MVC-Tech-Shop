@@ -31,9 +31,15 @@
                 <td>@laptop.Processor</td>
                 <td>@laptop.Price$</td>
                 <td>
-                    <a asp-controller="Laptops" asp-action="Details" asp-route-id="@laptop.Id" class="btn btn-primary">Details</a>
+                    <div class="btn-group">
+                        <a asp-controller="Laptops" asp-action="Details" asp-route-id="@laptop.Id" class="btn btn-secondary">Details</a>
+                        <a asp-controller="Laptops" asp-action="Edit" asp-route-id="@laptop.Id" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Laptops" asp-action="Delete" asp-route-id="@laptop.Id" class="btn btn-danger">Delete</a>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<a asp-controller="Laptops" asp-action="Create" class="btn btn-primary">Create New Laptop</a>
