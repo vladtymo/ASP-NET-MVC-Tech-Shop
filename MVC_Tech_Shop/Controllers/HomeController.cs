@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVC_Tech_Shop.Data;
-using MVC_Tech_Shop.Models;
 using System.Diagnostics;
+using Data;
+using MVC_Shop.Models;
 
-namespace MVC_Tech_Shop.Controllers
+namespace MVC_Shop.Controllers
 {
     public class HomeController : Controller
     {

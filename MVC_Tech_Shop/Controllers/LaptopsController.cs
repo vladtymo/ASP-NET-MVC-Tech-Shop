@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVC_Tech_Shop.Data;
-using MVC_Tech_Shop.Models;
+using Data;
+using Data.Models;
 
-namespace MVC_Tech_Shop.Controllers
+namespace MVC_Shop.Controllers
 {
     public class LaptopsController : Controller
     {
@@ -26,7 +26,13 @@ namespace MVC_Tech_Shop.Controllers
         {
             Laptop? laptop = context.Laptops.Find(id); //MockData.GetLaptopById(id);
 
-            if (laptop == null) return NotFound(); 
+            if (laptop == null) return NotFound();
+
+            //ViewData - Type Conversion code is required while enumerating
+            //ViewData["ReturnUrl"] = Request.Headers["Referer"].ToString();
+
+            // ViewBag - used dynamic, so there is no need to type conversion while enumerating
+            ViewBag.ReturnUrl = Request.Headers["Referer"].ToString();
 
             return View(laptop); // Views/Laptops/Details.cshtml
         }
@@ -47,7 +53,46 @@ namespace MVC_Tech_Shop.Controllers
             context.Laptops.Add(laptop);
             context.SaveChanges();
 
-            TempData["isCreated"] = "true";
+            TempData["alertMessage"] = "Product was successfully created!";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Laptops/Edit/{id}
+        public IActionResult Edit(int id)
+        {
+            Laptop? laptop = context.Laptops.Find(id);
+
+            if (laptop == null) return NotFound();
+
+            return View(laptop);
+        }
+
+        // POST: /Laptops/Edit
+        [HttpPost]
+        public IActionResult Edit(Laptop laptop)
+        {
+            context.Laptops.Update(laptop);
+            context.SaveChanges();
+
+            // show toastr
+            TempData["alertMessage"] = "Product was successfully edited!";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Laptops/Delete/{id}
+        public IActionResult Delete(int id)
+        {
+            Laptop? laptop = context.Laptops.Find(id);
+
+            if (laptop == null) return NotFound();
+
+            context.Laptops.Remove(laptop);
+            context.SaveChanges();
+
+            // show toastr
+            TempData["alertMessage"] = "Product was successfully deleted!";
 
             return RedirectToAction(nameof(Index));
         }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MVC_Tech_Shop.Models
+namespace Data.Models
 {
     public class Laptop
     {
@@ -17,5 +17,6 @@ namespace MVC_Tech_Shop.Models
 
         [Range(0, 100_000_000)]
         public decimal Price { get; set; }
+        public string? ImagePath { get; set; }
     }
 }

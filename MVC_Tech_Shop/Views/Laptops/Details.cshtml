@@ -1,7 +1,9 @@
-﻿@model MVC_Tech_Shop.Models.Laptop;
-
+﻿@model Data.Models.Laptop;
+@{
+    string returnUrl = ViewBag.ReturnUrl; //ViewData["ReturnUrl"] as string;
+}
 <div>
-    <a asp-action="Index" class="btn btn-outline-dark">Back</a>
+    <a href="@returnUrl" class="btn btn-outline-dark">Back</a>
     <h1 class="d-inline-block align-middle">Laptop Details</h1>
 </div>
 <hr />

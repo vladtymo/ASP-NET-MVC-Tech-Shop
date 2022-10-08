@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVC_Tech_Shop.Models;
+using Data.Models;
+using Data.Mock;
 
-namespace MVC_Tech_Shop.Data
+namespace Data
 {
     public class TechShopDbContext : DbContext
     {

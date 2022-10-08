@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MVC_Tech_Shop.Migrations
+namespace Data.Migrations
 {
     public partial class Initial : Migration
     {

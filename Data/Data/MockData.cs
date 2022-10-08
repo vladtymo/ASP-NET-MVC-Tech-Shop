@@ -1,6 +1,9 @@
-﻿using MVC_Tech_Shop.Models;
+﻿using Data.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace MVC_Tech_Shop.Data
+namespace Data.Mock
 {
     public static class MockData
     {
@@ -15,7 +18,8 @@ namespace MVC_Tech_Shop.Data
                     Model = "Dell Latitude 5320",
                     Display = "13.3″ Full HD",
                     Processor = "11th Gen Intel® Core i5",
-                    Price = 699
+                    Price = 699,
+                    ImagePath = @"https://img.moyo.ua/img/gallery/4867/43/1104939_middle.jpg?1617223785"
                 },
                 new Laptop()
                 {
@@ -23,7 +27,9 @@ namespace MVC_Tech_Shop.Data
                     Model = "Samsung Chromebook 4 310XBA-KA1",
                     Display = "11.6″ HD LED Display",
                     Processor = "Intel® Dual-Core",
-                    Price = 199
+                    Price = 199,
+                    ImagePath = @"https://i5.walmartimages.com/asr/8d794c17-41b0-42b2-9e11-4c60bfd81af0_1.54a5a04f52a9a6f929e635df6d8c31e6.jpeg"
+
                 },
                 new Laptop()
                 {
@@ -31,7 +37,8 @@ namespace MVC_Tech_Shop.Data
                     Model = "Lenovo IdeaPad Flex 5",
                     Display = "13.3″ Full HD IPS Touch Screen",
                     Processor = "Intel® Core i3",
-                    Price = 419
+                    Price = 419,
+                    ImagePath = @"https://www.notebookcheck-ru.com/uploads/tx_nbc2/LenovoIdeaPadFlex5-14IIL05__1__06.JPG"
                 },
                 new Laptop()
                 {
@@ -39,7 +46,8 @@ namespace MVC_Tech_Shop.Data
                     Model = "Dell Latitude E7420",
                     Display = "14” 4K Anti-glare",
                     Processor = "11th Gen Intel Core i7",
-                    Price = 899
+                    Price = 899,
+                    ImagePath = @"https://hotline.ua/img/tx/132/13238035.jpg"
                 }
             };
         }
