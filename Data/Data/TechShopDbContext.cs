@@ -19,9 +19,11 @@ namespace Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<OperationSystem>().HasData(MockData.GetOSs());
             modelBuilder.Entity<Laptop>().HasData(MockData.GetLaptops());
         }
 
         public DbSet<Laptop> Laptops { get; set; }
+        public DbSet<OperationSystem> OperationSystems { get; set; }
     }
 }

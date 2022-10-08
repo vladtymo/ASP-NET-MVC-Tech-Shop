@@ -22,3 +22,15 @@ body {
     object-fit: contain;
     padding: 8px;   
 }
+
+.image-cell-block {
+    text-align: center;
+}
+.image-cell {
+    transition: .2s;
+    height: 70px;
+    border-radius: 3px;
+}
+.image-cell:hover {
+    transform: scale(2.5);
+}

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Data;
 using Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVC_Shop.Controllers
 {
@@ -16,7 +18,7 @@ namespace MVC_Shop.Controllers
         // GET: /Laptops/Index
         public IActionResult Index()
         {
-            var laptops = context.Laptops.ToList(); //MockData.GetLaptops();
+            var laptops = context.Laptops.Include(l => l.OperationSystem).ToList(); //MockData.GetLaptops();
 
             return View(laptops); // Views/Laptops/Index.cshtml
         }
@@ -41,6 +43,9 @@ namespace MVC_Shop.Controllers
         [HttpGet] // by default
         public IActionResult Create()
         {
+            var osList = context.OperationSystems.ToList();
+            ViewBag.OSList = new SelectList(osList, nameof(OperationSystem.Id), nameof(OperationSystem.Name));
+
             return View();
         }
 
@@ -48,7 +53,13 @@ namespace MVC_Shop.Controllers
         [HttpPost]
         public IActionResult Create(Laptop laptop)
         {
-            if (!ModelState.IsValid) return View(laptop);
+            if (!ModelState.IsValid)
+            {
+                var osList = context.OperationSystems.ToList();
+                ViewBag.OSList = new SelectList(osList, nameof(OperationSystem.Id), nameof(OperationSystem.Name));
+
+                return View(laptop);
+            }
 
             context.Laptops.Add(laptop);
             context.SaveChanges();
@@ -61,6 +72,7 @@ namespace MVC_Shop.Controllers
         // GET: /Laptops/Edit/{id}
         public IActionResult Edit(int id)
         {
+            // TODO: add validation
             Laptop? laptop = context.Laptops.Find(id);
 
             if (laptop == null) return NotFound();
