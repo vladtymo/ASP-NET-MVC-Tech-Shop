@@ -29,6 +29,11 @@
         <select asp-for="OperationSystemId" asp-items="@ViewBag.OSList" class="form-select"></select>
         <span asp-validation-for="OperationSystemId" class="text-danger"></span>
     </div>
+    <div class="col-12">
+        <label asp-for="ImagePath" class="form-label">Image URL</label>
+        <input asp-for="ImagePath" class="form-control" placeholder="Image URL address">
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
 
     <div class="col-6">
         <a asp-action="Index" class="btn btn-secondary w-100">Back</a>

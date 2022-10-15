@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Data.Models.Laptop>;
-
+@{
+    string productImagePlaceholder = "https://st.depositphotos.com/1001069/1998/i/950/depositphotos_19988345-stock-photo-laptop-with-blank-screen.jpg";
+}
 <div class="card text-center">
     <div class="card-header">
         My Cart 
@@ -18,6 +20,7 @@
                 @foreach (var laptop in @Model)
                 {
                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <img height="80" src="@(laptop.ImagePath ?? productImagePlaceholder)" alt="Product image">
                         <span>
                             <strong>@laptop.Model</strong>
                             @laptop.Processor
