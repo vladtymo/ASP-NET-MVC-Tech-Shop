@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using Data;
 using MVC_Shop.Models;
+using MVC_Shop.ViewModels;
+using MVC_Shop.Helpers;
 
 namespace MVC_Shop.Controllers
 {
@@ -16,9 +18,25 @@ namespace MVC_Shop.Controllers
 
         public IActionResult Index()
         {
-            var laptops = context.Laptops.ToList();
+            var laptops = context.Laptops.Select(l => new LaptopCardViewModel()
+            {
+                Laptop = l,
+            }).ToList();
+
+            foreach (var item in laptops)
+            {
+                item.IsInCart = IsProductInCart(item.Laptop.Id);
+            }
 
             return View(laptops);
+        }
+
+        private bool IsProductInCart(int id)
+        {
+            List<int>? ids = HttpContext.Session.GetObject<List<int>>("cartKey");
+            if (ids == null) return false;
+
+            return ids.Contains(id);
         }
 
         public IActionResult Privacy()

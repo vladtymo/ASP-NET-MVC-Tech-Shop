@@ -4,15 +4,10 @@
 <hr />
 
 <form asp-action="Edit" method="post" class="row g-3">
-    <div class="col-6">
+    <div class="col-12">
         <label asp-for="Model" class="form-label">Model</label>
         <input asp-for="Model" class="form-control" placeholder="MacBook Pro">
         <span asp-validation-for="Model" class="text-danger"></span>
-    </div>
-    <div class="col-6">
-        <label asp-for="Price" class="form-label">Price</label>
-        <input asp-for="Price" class="form-control" placeholder="999">
-        <span asp-validation-for="Price" class="text-danger"></span>
     </div>
     <div class="col-6">
         <label asp-for="Processor" class="form-label">Processor</label>
@@ -24,6 +19,17 @@
         <input asp-for="Display" class="form-control" placeholder="15″ 3K Retina Display">
         <span asp-validation-for="Display" class="text-danger"></span>
     </div>
+    <div class="col-6">
+        <label asp-for="Price" class="form-label">Price</label>
+        <input asp-for="Price" class="form-control" placeholder="999">
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label asp-for="OperationSystemId" class="form-label">Operation System</label>
+        <select asp-for="OperationSystemId" asp-items="@ViewBag.OSList" class="form-select"></select>
+        <span asp-validation-for="OperationSystemId" class="text-danger"></span>
+    </div>
+
     <div class="col-6">
         <a asp-action="Index" class="btn btn-secondary w-100">Back</a>
     </div>

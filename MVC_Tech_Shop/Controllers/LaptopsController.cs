@@ -43,10 +43,15 @@ namespace MVC_Shop.Controllers
         [HttpGet] // by default
         public IActionResult Create()
         {
-            var osList = context.OperationSystems.ToList();
-            ViewBag.OSList = new SelectList(osList, nameof(OperationSystem.Id), nameof(OperationSystem.Name));
+            SetOperationSystems();
 
             return View();
+        }
+
+        private void SetOperationSystems()
+        {
+            var osList = context.OperationSystems.ToList();
+            ViewBag.OSList = new SelectList(osList, nameof(OperationSystem.Id), nameof(OperationSystem.Name));
         }
 
         // POST: /Laptops/Create
@@ -55,9 +60,7 @@ namespace MVC_Shop.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var osList = context.OperationSystems.ToList();
-                ViewBag.OSList = new SelectList(osList, nameof(OperationSystem.Id), nameof(OperationSystem.Name));
-
+                SetOperationSystems();
                 return View(laptop);
             }
 
@@ -77,6 +80,8 @@ namespace MVC_Shop.Controllers
 
             if (laptop == null) return NotFound();
 
+            SetOperationSystems();
+
             return View(laptop);
         }
 
@@ -84,6 +89,12 @@ namespace MVC_Shop.Controllers
         [HttpPost]
         public IActionResult Edit(Laptop laptop)
         {
+            if (!ModelState.IsValid)
+            {
+                SetOperationSystems();
+                return View(laptop);
+            }
+
             context.Laptops.Update(laptop);
             context.SaveChanges();
 

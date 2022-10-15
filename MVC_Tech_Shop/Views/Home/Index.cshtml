@@ -1,4 +1,4 @@
-﻿@model List<Data.Models.Laptop>;
+﻿@model IEnumerable<MVC_Shop.ViewModels.LaptopCardViewModel>;
 @{
     string productImagePlaceholder = "https://st.depositphotos.com/1001069/1998/i/950/depositphotos_19988345-stock-photo-laptop-with-blank-screen.jpg";
 }
@@ -12,13 +12,21 @@
         {
             <div class="col">
                 <div class="card h-100">
-                    <img src="@(i.ImagePath ?? productImagePlaceholder)" class="card-img-top prod-image" alt="Product Image">
+                    <img src="@(i.Laptop.ImagePath ?? productImagePlaceholder)" class="card-img-top prod-image" alt="Product Image">
                     <div class="card-body">
-                        <h5 class="card-title">@i.Model</h5>
-                        <p>Price: @i.Price$</p>
+                        <h5 class="card-title">@i.Laptop.Model</h5>
+                        <p>Price: @i.Laptop.Price$</p>
                     </div>
                     <div class="card-footer">
-                        <a asp-controller="Laptops" asp-action="Details" asp-route-id="@i.Id" class="btn btn-secondary">Details</a>
+                        <a asp-controller="Laptops" asp-action="Details" asp-route-id="@i.Laptop.Id" class="btn btn-secondary">Details</a>
+                        @if (!i.IsInCart)
+                        {
+                            <a asp-controller="Cart" asp-action="Add" asp-route-id="@i.Laptop.Id" class="btn btn-primary">Add to Cart</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Cart" asp-action="Remove" asp-route-id="@i.Laptop.Id" class="btn btn-secondary">Remove from Cart</a>
+                        }
                     </div>
                 </div>
             </div>
