@@ -30,6 +30,7 @@ namespace Data
         }
 
         public DbSet<Laptop> Laptops { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<OperationSystem> OperationSystems { get; set; }
     }
 }

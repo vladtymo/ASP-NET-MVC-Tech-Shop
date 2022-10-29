@@ -11,8 +11,9 @@ string connectionStr = builder.Configuration.GetConnectionString("LocalDb");
 builder.Services.AddControllersWithViews();
 
 // Dependency Injection
-builder.Services.AddDbContext<TechShopDbContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechShopTestDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+builder.Services.AddDbContext<TechShopDbContext>(options => options.UseSqlServer(connectionStr));
 
+// configure identity
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<TechShopDbContext>();
 
