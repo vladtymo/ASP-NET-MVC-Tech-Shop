@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Data;
+using Microsoft.AspNetCore.Identity;
+using Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,10 @@ string connectionStr = builder.Configuration.GetConnectionString("LocalDb");
 builder.Services.AddControllersWithViews();
 
 // Dependency Injection
-builder.Services.AddDbContext<TechShopDbContext>(options => options.UseSqlServer(connectionStr));
+builder.Services.AddDbContext<TechShopDbContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechShopTestDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<TechShopDbContext>();
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -35,11 +40,13 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.UseSession();
 
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Data.Models;
 using Data.Mock;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Data
 {
-    public class TechShopDbContext : DbContext
+    public class TechShopDbContext : IdentityDbContext<User>
     {
         //public TechShopDbContext() { }
         public TechShopDbContext(DbContextOptions options) : base(options) { }
@@ -18,6 +20,10 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().HasMany(u => u.Orders)
+                                       .WithOne(o => o.User)
+                                       .HasForeignKey(o => o.UserId);
 
             modelBuilder.Entity<OperationSystem>().HasData(MockData.GetOSs());
             modelBuilder.Entity<Laptop>().HasData(MockData.GetLaptops());
